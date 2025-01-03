@@ -1,43 +1,5 @@
 # ME 449 Capstone Project README
 
-## Submission File Structure:
-
-The file structure for my submission can be seen below. You are reading the README.pdf in the main folder. Then, there is a folder containing all the code for this project, written in a fully commented and well-organized python notebook. Code for all three sections is found within the code notebook, and the full final project code can be found in the last cell of this notebook. I also consolidated the code just for the final run (including all milestone functions) into a single code.py file, however, I used the notebook and foundit convenient. The results requested are within the results folder, organized into the best, newTask, and overshoot folders. To run my code for each of these sections, simply copy the entry from within the log.txt file and paste into the bottom of the python notebook. Then, the trajectory will be stored into the q_final.csv file, the X_err data will be stored into the X_err.csv file, and the X_err data will be plotted. To run in CopelliaSim simply copy the path to the q_final.csv file and paste into Scene6.
-
-Mobile-Manipulator/ <br />
-│ <br />
-├──README.pdf <br />
-├── code/ <br />
-│ ├── code.ipynb <br />
-│ ├── code.py <br />
-│ ├── configuration.csv <br />
-│ ├── q_final.csv <br />
-│ ├── reference_trajectory.csv <br />
-│ ├── X_err.csv <br />
-├── results/ <br />
-│ ├── best/ <br />
-│ │ ├── best_log.txt <br />f
-│ │ ├── best_recording.mp4 <br />
-│ │ ├── best_trajectory.csv <br />
-│ │ ├── best_X_err.csv <br />
-│ │ ├── best.png <br />
-│ │ └── README.txt <br />
-│ ├── newTask/ <br />
-│ │ ├── newTask_log.txt <br />
-│ │ ├── newTask_recording.mp4 <br />
-│ │ ├── newTask_trajectory.csv <br />
-│ │ ├── newTask_X_err.csv  <br />
-│ │ ├── newTask.png <br />
-│ │ └── README.txt <br />
-│ └── overshoot/ <br />
-│ ├── overshoot_joint_limit_comparison_recording.mp4 <br />
-│ ├── overshoot_log.txt <br />
-│ ├── overshoot_recording.mp4 <br />
-│ ├── overshoot_trajectory.csv <br />
-│ ├── overshoot_X_err.csv <br />
-│ ├── overshoot.png <br />
-│ └── README.txt <br />
-
 ## Software Overview:
 
 The software in this project can perform kinematic task-space feedback control of a mobile manipulator using PI feedback control. The software can be divided generally into three main functions. The first function TrajectoryGenerator defines a desired trajectory for the robot to follow. This trajectory is defined by a set of key points in a pick and place task, and outputs the desired trajectory. Next, the function
