@@ -1,5 +1,45 @@
 # ME 449 Capstone Project README
 
+## Submission File Structure:
+
+The file structure for my submission can be seen below. You are reading the README.pdf in the main folder. Then, there is a folder containing all the code for this project, written in a fully commented and well-organized python notebook. Code for all three sections is found within the code notebook, and the full final project code can be found in the last cell of this notebook. I also consolidated the code just for the final run (including all milestone functions) into a single code.py file, however, I used the notebook and foundit convenient. The results requested are within the results folder, organized into the best, newTask, and overshoot folders. To run my code for each of these sections, simply copy the entry from within the log.txt file and paste into the bottom of the python notebook. Then, the trajectory will be stored into the q_final.csv file, the X_err data will be stored into the X_err.csv file, and the X_err data will be plotted. To run in CopelliaSim simply copy the path to the q_final.csv file and paste into Scene6.
+
+```
+Mobile-Manipulator/
+│
+├──README.pdf
+├── code/
+│ ├── code.ipynb
+│ ├── code.py
+│ ├── configuration.csv
+│ ├── q_final.csv
+│ ├── reference_trajectory.csv
+│ ├── X_err.csv
+├── results/
+│ ├── best/
+│ │ ├── best_log.txt
+│ │ ├── best_recording.mp4
+│ │ ├── best_trajectory.csv
+│ │ ├── best_X_err.csv
+│ │ ├── best.png
+│ │ └── README.txt
+│ ├── newTask/
+│ │ ├── newTask_log.txt
+│ │ ├── newTask_recording.mp4
+│ │ ├── newTask_trajectory.csv
+│ │ ├── newTask_X_err.csv
+│ │ ├── newTask.png
+│ │ └── README.txt
+│ └── overshoot/
+│ ├── overshoot_joint_limit_comparison_recording.mp4
+│ ├── overshoot_log.txt
+│ ├── overshoot_recording.mp4
+│ ├── overshoot_trajectory.csv
+│ ├── overshoot_X_err.csv
+│ ├── overshoot.png
+│ └── README.txt
+```
+
 ## Software Overview:
 
 The software in this project can perform kinematic task-space feedback control of a mobile manipulator using PI feedback control. The software can be divided generally into three main functions. The first function TrajectoryGenerator defines a desired trajectory for the robot to follow. This trajectory is defined by a set of key points in a pick and place task, and outputs the desired trajectory. Next, the function
