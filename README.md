@@ -1,6 +1,6 @@
 # ME 449 Capstone Project README
 
-## Submission File Structure:
+## File Structure:
 
 The file structure can be seen below. You are reading the README.pdf in the main folder. Then, there is a folder containing all the code for this project, written in a fully commented and well-organized python notebook. Code for all three sections is found within the code notebook, and the full final project code can be found in the last cell of this notebook. I also consolidated the code just for the final run (including all milestone functions) into a single code.py file, however, I used the notebook and foundit convenient. The results requested are within the results folder, organized into the best, newTask, and overshoot folders. To run my code for each of these sections, simply copy the entry from within the log.txt file and paste into the bottom of the python notebook. Then, the trajectory will be stored into the q_final.csv file, the X_err data will be stored into the X_err.csv file, and the X_err data will be plotted. To run in CopelliaSim simply copy the path to the q_final.csv file and paste into Scene6.
 
