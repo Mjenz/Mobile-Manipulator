@@ -1,0 +1,61 @@
+Log of function call, initalization, and plotting
+
+# FULL PROGRAM
+
+# Initialize (TrajectoryGenerator)
+M_se = get_transformation(configuration=np.zeros(13))           # Home config
+T_se = np.array([[0,0,1,0],[0,1,0,0],[-1,0,0,.5],[0,0,0,1]])    # Final project specified starting point
+
+T_sc_initial = np.array([[1,0,0,1],[0,1,0,0],[0,0,1,0.025],[0,0,0,1]])
+T_sc_final= np.array([[0,1,0,0],[-1,0,0,-1],[0,0,1,0.025],[0,0,0,1]])
+T_ce_grasp = np.array([[-1/np.sqrt(2),0,1/np.sqrt(2),0],[0,1,0,0],[-1/np.sqrt(2),0,-1/np.sqrt(2),0],[0,0,0,1]])
+T_ce_standoff = np.array([[-1/np.sqrt(2),0,1/np.sqrt(2),0],[0,1,0,0],[-1/np.sqrt(2),0,-1/np.sqrt(2),.25],[0,0,0,1]])
+k = 1
+
+# Get reference trajectory
+trajectory = TrajectoryGenerator(T_se,T_sc_initial,T_sc_final,T_ce_grasp,T_ce_standoff,k)
+
+# Initialize (FeedbackControl)
+starting_q = np.array([0,.05,np.pi/3,0,-.1,-.1,-.1,0,0,0,0,0])
+
+K_p = .75*np.eye(6)
+K_i = 0.001*np.eye(6)
+dt = 0.01
+X_err_integrated = 0
+
+# Run
+
+# Start recording configuration
+q_hist = [np.hstack([starting_q,trajectory[0][-1]])]
+X_err_hist = []
+q = starting_q
+for ii in range(0,np.shape(trajectory)[0]-1):
+    X_d = trajectory[ii]
+    X_d_next = trajectory[ii+1]
+
+    joint_speeds,X_err,X_err_integrated = FeedbackControl(q,X_d,X_d_next,dt,K_p,K_i,X_err_integrated)
+    q = NextState(configuration=q,controls=joint_speeds,dt=dt,max_ang_speed=100)
+    q_hist.append(np.hstack([q,trajectory[ii][-1]]))
+    X_err_hist.append(X_err)
+
+with open("q_final.csv",'w') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerows(q_hist)
+
+with open("X_err.csv",'w') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerows(X_err_hist)
+
+
+plt.figure()
+X_err_hist=np.array(X_err_hist)
+print(np.shape(X_err_hist))
+for i in range(0,6):
+    plt.plot(X_err_hist[:,i])
+
+plt.title("End Effector Twist Error During Simulation")
+plt.ylabel("Error")
+plt.xlabel("Iteration")
+plt.legend(["w1","w2","w3","x","y","z"])
+
+
